@@ -1,0 +1,146 @@
+\subsection{Reliability-oriented Edge Selection} 
+\begin{sloppypar}
+The most important step is the selection of potential edges, which impacts further anonymization effort significantly. Finding the optimal set of edges $E_{c}$ that balances privacy and utility is a typical combinational optimization problem. The problem is computationally expensive since there are exponential many combinations to be considered.     
+
+To alleviate the combinational intractability, kind of heuristics have been utilized in the context of deterministic graphs. These heuristics can be classified into two main categories  (1) Anonymity-oriented ones that suggest implementing larger perturbation to less anonymized nodes~\cite{Ying2009} (2) Utility-oriented ones that suggest implementing smaller perturbation to more influential edges/nodes~\cite{casasprivacy,Ying_Randomizing_2008}. 
+\end{sloppypar}
+
+In this work, we present a sampling-based approach which combines both heuristics together. First, we adopt the idea of \emph{uniqueness score} for quantifying the anonymity level of nodes. Second, we introduce a novel edge relevance metric, \emph{reliability relevance} (RR), for quantifying the impact of edge modification to the overall uncertain graph. In contrast to the existing metrics such as edge betweenness~\cite{casasprivacy}, which are all defined in deterministic graphs, reliability relevance geared towards uncertain graphs. It allows us to select a subset of edges subjected to perturbation with less impact on reliability (reliability-oriented edge selection). 
+
+\subsubsection{Uniqueness Score}
+\label{sec:uniqueness}
+
+\emph{Uniqueness score} is proposed to measure how typical the node is among all the nodes in terms of its property value \cite{Boldi_Injecting_2012}. More formally, the uniqueness score is defined as follows. 
+\begin{definition}
+    \textbf{Uniqueness Score~\cite{Boldi_Injecting_2012}}
+     Let $P:V \rightarrow  \Omega_{P}$ be a property on the set of nodes $V$ of the graph $\mathcal{G}$, let $d$ be a distance function on $\Omega_{P}$, and let $\theta >0$  be a parameter. 
+  Then the $\theta-commonness$ of the property values $\omega \in \Omega_{P}$ is $C_{\theta}(\omega):= \sum_{u \in V} \Phi_{0,\theta}(d(\omega, P(v)))$,   
+while the $\theta$-uniqueness of $\omega \in \Omega_{P}$ is $U_{\theta}:= \frac{1}{C_{\theta}(\omega)}$. 
+\end{definition} 
+Note that, the commonness of the property value $\omega$ captures how typical the value $\omega$  is among all the  nodes in the graph via a weighted average function, where the weight decays exponentially as the distance $d$. As above defined, uniqueness scores depend on the parameter $\theta$, which determines the decay rate of average weights. In this work, we set $\theta=\sigma_{\mathcal{G}}$, where $\sigma_{\mathcal{G}}$ represents how frequently the property value spread in the uncertain graph $\mathcal{G}$. A comprehensive discussion can be found in the literature \cite{Boldi_Injecting_2012}.
+
+\subsubsection{Reliability Relevance}
+
+\begin{figure}[!tb]
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+         \includegraphics[scale=0.4]{figures/DegreeAUG/uncertainO.eps}
+         \caption{\small{An uncertain graph}}
+        \label{fig:edgeBridgeGraph}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+         \includegraphics[scale=0.4]{figures/DegreeAUG/uncertainC.eps}
+         \caption{\small{Resulting uncertain graphs}}
+        \label{fig:edgeRelevance}
+     \end{subfigure}
+     \caption{Illustration of varying structural distortions by removing different uncertain edges $(b,e)$ and $(a,b)$ over an uncertain graph.}
+     \label{fig:edgeRR}
+\end{figure}
+As exemplified in Figure~\ref{fig:edgeRR}, each edge modification will have \emph{varying} impact to the graph structure in the context of uncertain graphs. From the perspective of \emph{uniqueness}, nodes $a$ and $e$ are identical since adjacent edges have identical uncertainties. Accordingly, anonymity-oriented heuristics would select and perturb edges $(a,b)$ and $(b,e)$ without bias. As shown in Figure~\ref{fig:edgeRR}, the deletion of the uncertain edge $(b,e)$, the only link connecting two \emph{reliable} clusters, clearly incurs much larger structure distortion than the deletion of the edge $(a,b)$. This observation calls for an effective measure of edge influence in the context of uncertain graphs. 
+
+Inspired by the significance of \emph{reliability}, we provide a compact analytic form of reliability deviation caused by individual uncertain edge modification in a fine-grained way, namely changing its edge probability in any granularity. Following the path, we introduce edge reliability relevance for edges' influence estimation, which can be quantified by the sum of reliability discrepancy of all the node pairs. Besides, we provide an algorithm for accessing edge \emph{reliability relevance} (RR) efficiently. 
+
+\paragraph{Reliability Relevance Definition}
+
+Lets start with analyzing the impact of single uncertain edge alteration to the connectivity of a specific node pair (Two-terminal Reliability).  
+\begin{definition}
+    \textbf{Two-terminal Reliability Relevance}
+    Given an uncertain graph $\mathcal{G}$, and two nodes $u,v$, we consider the probability that $u$ is reachable to $v$,$R_{u,v}(\mathcal{G})$, as defined in Definition \ref{d:reliability}, as a multivariate function involving all the edge probabilities.   
+    Thus, the partial derivative of $R_{u,v}(\mathcal{G})$ with respect to an individual variable $p(e)$, existence probability of an uncertain edge, denotes as $RR_{u,v}(e)$. It represents the sensitivity to the change of reliability $R_{u,v}$ which is determined by $p(e)$ with the others held constant. Its definitions is as follows:  
+\begin{equation*}
+    \svj
+    RR_{u,v}(e)= \frac{\partial R_{u,v}(\mathcal{G})}{\partial \mathit{p}(e)}
+    \svj
+\end{equation*}
+\end{definition}
+
+% The following factorization lemma underlies the computation of partial derivative $RR_{u,v}(e)$ in a compact form. 
+\begin{lemma}
+    \textbf{Factorization Lemma}
+       Given an uncertain graph $\mathcal{G}$, the reliability of the node pair $(u,v)$ $R_{u,v}(\mathcal{G})$ can factorized via one uncertain edge $e$ as follows:
+    \vj
+    \begin{equation*}
+        R_{u,v}(\mathcal{G}) = p(e) R_{u,v} (\mathcal{G}_{e}) + (1-p(e)) R_{u,v} (\mathcal{G}_{\bar{e}} )
+        \label{eq:fac}
+        \svj
+    \end{equation*}
+    where uncertain graph $\mathcal{G}_{e}$ is identical with $\mathcal{G}$ except its edge $e$ is an \textbf{certain} edge. Similarly, the uncertain graph $\mathcal{G}_{\bar{e}}$ is identical with $\mathcal{G}$ except its edge $e$ is an \textbf{certain non} edge. 
+\end{lemma}
+According to the factorization lemma, the partial derivative $RR_{u,v}(e)$ can be rewritten as 
+\vj
+\begin{equation*}
+    RR_{u,v}(e)=R_{u,v}(\mathcal{G}_{e})-R_{u,v}(\mathcal{G}_{\bar{e}})
+\end{equation*}
+\svj
+The equation indicates the sensitivity of reliability is constant and it does not depend on the probability value of the uncertain edge $e$. Another important point to remember is that because all the connected pairs remain connected after the addition of an edge, $R_{u,v}(\mathcal{G}_{e}) - R_{u,v} (\mathcal{G}_{\bar{e}}) \ge 0$.
+
+For a given uncertain edge $e$, the derivatives $RR_{u,v}(e)$ can be arranged in a $|V|\times |V|$ matrix, where each element corresponds to one node pair $(u,v)$ and it gives the partial derivative for the corresponding reliability $R_{u,v}$. As ever discussed, all the element are equal to or greater than zero.  
+In this work, we define $RR(e)$ to be reliability relevance of an edge $e$ which can be quantified by the sum of all the $RR_{u,v}(e)$, as  
+\vj
+\begin{align*}
+    RR(e) &= \sum_{u,v} |RR_{u,v}(e)| \\
+          &= \sum_{u,v} |R_{u,v}(\mathcal{G}_{e}) -R_{u,v}(\mathcal{G}_{\bar{e}})| \\  
+         &= \sum_{u,v} R_{u,v} (\mathcal{G}_{e}) - \sum_{u,v} R_{u,v}(\mathcal{G}_{\bar{e}})
+    \svj 
+\end{align*}
+Note that, $RR(e)$ equals the difference of the expected number of connected pairs between uncertain graphs $\mathcal{G}_{e}$ and $\mathcal{G}_{\bar{e}}$ by explicit incorporation of edge uncertainty. In the context of edge relevance, reliability relevance can be seen as generalization of cut-edges, which quantifies the impact of partial edge deletion or addition on the connectivity in the uncertain graph. 
+The higher reliability relevance score of an edge, the bigger impact of edge perturbation over the overall graph.  
+On this basis, we define the reliability centrality of node $v$,$RC(v)$ to be the overall influence of graph reliability which can be quantified by the weighted sum of reliability relevance of all adjacent edges. 
+\svj
+\begin{equation*}
+    RC(u)=\sum_{e} p(e) RR(e)
+    \svj
+\end{equation*}
+
+\begin{algorithm}[!tb]
+    \begin{algorithmic}[1]
+       \item[] {\textbf{Input:} ~$\mathcal{G}=(V,E,\mathit{p})$, $K$ is the number of sampled graphs; usually $K=1000$}
+    \item[] {\textbf{Output:} ~$RR$ Reliability relevance of edges in $\mathcal{G}$}
+    \STATE {$CC_{e} \leftarrow  \mathbf{0} $, $CC_{\bar{e}} \leftarrow \mathbf{0}$}
+    \FOR{i=1 \TO K }
+    \STATE {$G \leftarrow $  A deterministic sampled instance}
+    \STATE {$Ind(G)$ is edge existence of sampled graph $\mathcal{G}$}
+    \STATE {$cc(G) \leftarrow $ the number of connected pairs of $G$}
+    \STATE {$CC_{e}+=Ind(G) \cdot cc(G)$,$CC_{\bar{e}}+=(\mathbf{1}-Ind(G)) \cdot cc(G)$ }
+    \ENDFOR
+    \STATE{$RR= CC_{e}/\mathit{p} - CC_{\bar{e}}/{\mathbf{1}-\mathit{p}}$}
+         \caption{Reliability Relevance Evaluation}
+        \label{alg:RReval}
+    \end{algorithmic}
+\end{algorithm}
+
+
+\paragraph{Reliability Relevance Evaluation}
+
+Note that, the evaluation of $RR(e)$ need computing all the $R_{u,v}$ over two uncertain graphs $\mathcal{G}_{e}$ and $\mathcal{G}_{\bar{e}}$.  The two-terminal reliability detection problem is a $\#$P-complete problem \cite{MOBall}. Thus, the exact computation is not practical for large uncertain graphs. A basic approach is to get reliability approximation by sampling: for each uncertain edge $e$ 1) we first sample $K$ possible graphs $G_{1}, \ldots G_{K}$ of $\mathcal{G}_{\bar{e}}$ according to edge probability $\mathit{p}$, and 2) we then compute the number difference of connected pairs in each sample graph after edge $e$ is added. The basic sampling method can be rather computationally expensive. The total running time is $\Theta(|E| \cdot K\cdot \alpha(|V|) |E|)$ assuming incremental algorithm is used for computing connected components. It is impractical for large uncertain graphs with huge size of edges. 
+
+Here, we introduce a much faster approach for computing $RR(e)$ as shown in Algorithm \ref{alg:RReval}. The basic idea is to partition all sampled graphs into groups according to existing edges so that the evaluation of the number of connected pairs can be reused. 
+The complexity of reliability relevance evaluation of all edges is  $\Theta(K \cdot \alpha(|V|) |E|)$. 
+
+\subsubsection{Reliability-oriented Edge Selection Procedure}
+
+\input{Degree-AUG/genObfuscation.tex}
+Now, we are ready to introduce our function \texttt{GenerateObfuscation} aims at finding a $(k,\epsilon)$-obf instance for an input \emph{uncertain graph} $\mathcal{G}$ using a given standard deviation parameter $\sigma$ as shown in Algorithm \ref{alg:genObf}. It resembles the method proposed in \cite{Boldi_Injecting_2012} with explicit incorporation of edge uncertainty in edge selecting and perturbing step. Another important contribution of our work is the utilization of reliability relevance (RR) for capturing structural relevance of edges in the uncertain graph.  
+
+First, it computes the uniqueness level and reliability centrality for each node $v \in \mathcal{G}$. Intuitively, the more unique a node is, the harder it is to be obfuscated; the more \emph{important} an edge is, the bigger utility loss it incurs. Such heuristic information is important for our privacy-preserving and utility-preserving purpose. In order to  use the ``uncertainty budget'' in the most efficient way, the algorithm performs the following steps as shown in Algorithm \ref{alg:genObf}.
+
+(Line 4: Excluding) Since it is allowed not to obfuscate $\epsilon|V|$ of the nodes, the algorithm selects the set $H$ of $\frac{\epsilon}{2}|V|$ nodes with largest uniqueness scores or reliability centrality scores, and exclude them from the subsequent obfuscation efforts. In later steps, the algorithm will inject uncertainty only to edges that are not adjacent to any of vertices in $H$. The key feature of our method is that it strictly preserve the 1-neighborhoods of influential nodes.  
+
+(Line 8-18: Potential Edge Selection) The set of nodes not in $H$ will need to be anonymized. To anonymize more unique vertices, higher uncertainty is necessary. Thus, edges needed to be sampled with higher probability if they are adjacent to unique nodes. In order to better preserve graph structure, edges needed to be sampled with smaller probability if they are adjacent to more influential nodes. In order to handle this sample process, our algorithm assigns a probability $Q(v)$ to every $v \in V$, which depends on the uniqueness level $U(v)$ and reliability centrality $RC(v)$ of $v$. 
+
+Each attempt begins by selecting a subset of edges $E_c$, which will be subjected to edge probability perturbation. Then set $E_{c}$, whose target size $\norm{E_c}=c \norm{E}$, is initialized to be $E$. Then, the algorithm randomly selects two distinct vertices $u$ and $v$, according to probability distribution $Q$. The pair of vertices $(u,v)$ is removed from $E_{c}$ with the probability $p(e)$ if it is an edge in the original graph, or added to $E_{c}$ otherwise.  The process is repeated until $E_{c}$ reaches the require size. In typical uncertain graphs, the number of non-edges is significantly larger than the number of uncertain edges, the loop ends very quickly, for small values of $c$. And, the resulting set $E_{c}$ includes most of edges in $E$. 
+
+(Line 20) Next, we redistribute the perturbation budget among all selected edges $e \in E_{c}$ in proportion to their intermediate representations $Q(v)$. Specially, we define for each $e=(u,v) \in E_{c}$ , its uncertainty level, 
+\vj
+\begin{equation*}
+Q(e):= \frac{Q(u)+Q(v)}{2}
+\svj
+\end{equation*}
+and then set its edge perturbation parameter 
+\vj
+\begin{equation*}
+\svj
+\sigma(e)=\sigma |E_{c}|  \cdot \frac{Q(e)}{\sum_{e \in E_{c}} Q(e)}
+\end{equation*}
+so that the average of $\sigma(e)$ over all $e \in E_{C}$ equals $\sigma$.

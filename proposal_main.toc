@@ -1,0 +1,37 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {1.1}Motivation}{2}
+\contentsline {section}{\numberline {1.2}State-Of-the-Art}{2}
+\contentsline {section}{\numberline {1.3}Challenges}{3}
+\contentsline {chapter}{\numberline {2}Preliminaries}{4}
+\contentsline {section}{\numberline {2.1}Distributed Triangle Listing}{4}
+\contentsline {subsection}{\numberline {2.1.1}Triangle Listing Problem}{4}
+\contentsline {subsection}{\numberline {2.1.2}Sequential Triangle Listing}{4}
+\contentsline {subsection}{\numberline {2.1.3}MapReduce Overview}{6}
+\contentsline {subsection}{\numberline {2.1.4}Triangle Listing in MapReduce}{7}
+\contentsline {section}{\numberline {2.2}Privacy Protection on Uncertain Graphs}{8}
+\contentsline {subsection}{\numberline {2.2.1}Uncertain Graph}{8}
+\contentsline {subsection}{\numberline {2.2.2}Attack Model}{8}
+\contentsline {subsection}{\numberline {2.2.3}Privacy Criteria}{9}
+\contentsline {subsection}{\numberline {2.2.4}Reliability-based Utility Criteria}{11}
+\contentsline {chapter}{\numberline {3}Distributed Triangle Listing Algorithm}{13}
+\contentsline {section}{\numberline {3.1}Overview}{13}
+\contentsline {section}{\numberline {3.2}Bermuda Edge-Centric Node++ }{14}
+\contentsline {subsubsection}{Analysis of Bermuda Techniques}{15}
+\contentsline {section}{\numberline {3.3}Bermuda Vertex-Centric Node++}{18}
+\contentsline {subsection}{\numberline {3.3.1}Message Sharing Management}{21}
+\contentsline {subsection}{\numberline {3.3.2}Disscussion}{24}
+\contentsline {chapter}{\numberline {4}Degree Anonymization over Uncertain Graphs}{26}
+\contentsline {section}{\numberline {4.1}Naive Approach: Anonymization via Representative Instance}{26}
+\contentsline {section}{\numberline {4.2}Reliability-Preserving anonymization on uncertain graphs}{28}
+\contentsline {subsection}{\numberline {4.2.1}Anonymization Procedure}{28}
+\contentsline {subsection}{\numberline {4.2.2}Reliability-oriented Edge Selection}{30}
+\contentsline {subsubsection}{Uniqueness Score}{30}
+\contentsline {subsubsection}{Reliability Relevance}{31}
+\contentsline {paragraph}{Reliability Relevance Definition}{31}
+\contentsline {paragraph}{Reliability Relevance Evaluation}{33}
+\contentsline {subsubsection}{Reliability-oriented Edge Selection Procedure}{33}
+\contentsline {subsection}{\numberline {4.2.3}Anonymity-oriented Edge Perturbing}{36}
+\contentsline {subsubsection}{Basics}{37}
+\contentsline {subsubsection}{Re-visiting graph anonymity}{37}
+\contentsline {subsubsection}{Greedy search of graph anonymity}{38}
+\contentsline {chapter}{Bibliography}{39}

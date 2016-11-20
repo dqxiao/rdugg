@@ -1,0 +1,11 @@
+\section{Naive Approach: Anonymization via Representative Instance}
+\label{sec:repOB}
+\begin{figure}[t]
+    \centering  
+        \includegraphics[scale=0.38]{figures/DegreeAUG/repOB.eps}
+    	\caption{Illustration of anonymizing an uncertain graph though its representative deterministic instance and its drawback.}
+    \label{fig:repOB}
+\end{figure}
+A naive approach of anonymizing an uncertain graph is to first somehow transform it to a deterministic graph, then perform anonymization processing over the deterministic one. Fortunately, an increasing research effort was dedicated to the topic of exacting representative deterministic graphs from an uncertain graph \cite{Parchas_Gullo_Papadias_Bonchi_2014}. Parchas  {\etal} \cite{Parchas_Gullo_Papadias_Bonchi_2014} ever introduced algorithms for extracting deterministic representative graph which captures key properties of the input uncertain graph. Now, it becomes realizable to anonymize an uncertain graph in two steps as shown in Figure \ref{fig:repOB}. We first extract one deterministic representative instance $G$ from the input uncertain graph $\mathcal{G}$. Then, we anonymize the extracted deterministic graph $G$, and output this result as the anonymized result of the original uncertain graph $\mathcal{G}$ (referred as {\repAn}). 
+
+The {\repAn} approach is attracting since it does not require any new anonymization techniques specific designed for uncertain graphs. When the extracted representative deterministic graph $G$ is close enough to the input uncertain graph $\mathcal{G}$ in terms of graph properties, its anonymized result is expected to be a good anonymization of the input uncertain one. However, there is a non-negotiable difference between the input uncertain graph $\mathcal{G}$ and its deterministic representative instance $G$, as exemplified in Figure \ref{fig:repOB}. The anonymized result of $G$ which is structurally similar to itself instead of the input uncertain graph, consequently, may be far different from the optimal solution, as exemplified in Figure \ref{fig:repOB}. Therefore, we believe that for many applications, the {\repAn} approach,  introducing a high level of noise in such fashion, do reduce the overall graph utility.  In experiment section, we will further illustrate this phenomenon over real-world datasets. 

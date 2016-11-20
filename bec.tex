@@ -1,0 +1,159 @@
+\section{Overview}
+\label{sec:bectech}
+With the MR-Baseline Algorithm, one node needs to send the same pivot message to multiple nodes residing in the same reducer. Therefore, the network traffic can be reduced by sending only one message to the destination reducer, and either have main-memory cache or distributing the message 
+to actual graph nodes within each reducer. Although this strategy seems quite simple, and other systems such as GPS and X-Pregel~\cite{X-Pregel,GPS} have implemented it, the trick lies on how to efficiently perform the caching and sharing. In this section, we propose new effective caching strategies to maximize the sharing benefit while encountering little overhead. We also present novel theoretical analysis for the proposed techniques. 
+
+In the frameworks of GPS and X-Pregel, adjacency lists of high degree nodes are used for identifying distinct destination reducer and distributing the message to target nodes in the reduce side. This method requires extensive memory and computations for message sharing.  
+In contrast, in Bermuda, each node uses the {\em universal key partition function} to group its destination nodes. Thus, each node would only send the same pivot 
+message to each reduce instance only once. 
+At the same time, reduce instances will adopt different message-sharing strategies to guarantee the correctness of algorithm. 
+As a result,  Bermuda achieves a trade off between reducing the network communication---which is known to be a big bottleneck for map-reduce jobs---and increasing the processing cost and memory utilization. 
+
+\section{Bermuda Edge-Centric Node++ }
+\label{sec:EC}
+A straightforward (and intuitive) approach for sharing the pivot messages within each reduce instance 
+is to organize either the pivot or core messages in main-memory for efficient random access. 
+We propose the Bermuda Edge-Centric Node++ (Bermuda-EC) algorithm,  which is based on the observation that for a given input graph, 
+it is common to have the number of core messages smaller than the number of pivot messages. 
+Therefore, the main idea of Bermuda-EC algorithm is to first read the core messages, cache them in memory, and then stream the pivot messages, 
+and on-the-fly intersect the pivot messages with the needed core messages (See Figure~\ref{fig:Bermuda-EC}). 
+The MapReduce code of the Bermuda-EC algorithm is presented in Algorithm~\ref{alg:Bermuda-EC}.
+% For the purpose of reducing 
+
+In order to avoid pivot message redundancy, a universal key partitioning function is utilized by mappers. 
+The corresponding modification in the map side is as follows. First, each node $v$ employs a universal key partitioning function $h()$ to group its destination nodes 
+(Line 3, Algorithm \ref{alg:Bermuda-EC}). This grouping captures the graph nodes that will be processed by the same reduce instance. 
+Then, each node $v$ sends a pivot message including the information of $N_v^H$ to each non-empty group (Lines 4-6, Algorithm \ref{alg:Bermuda-EC}). 
+Following this strategy, each reduce instance receives each pivot message exactly once even if it will be referenced multiple times. 
+
+Moreover, we use tags to distinguish core and pivot messages, which are not listed in the algorithm for simplicity.  
+Combined with the MapReduce internal sorting function, Bermuda-EC guarantees that all core messages are received by the reduce function before any of the pivot messages 
+as illustrated in Figure \ref{fig:Bermuda-EC}. 
+Therefore, it becomes feasible to cache only the core messages in memory, and then perform the intersection as the 
+pivot messages are received.
+
+The corresponding modification in the reduce side is as follows. For a given reduce instance $R_i$, it first reads all the core message into main-memory (Line 7, Algorithm \ref{alg:Bermuda-EC}). Then, it iterates over all pivot message. Each pivot message is  intersected with the cached core messages for identifying the triangles. 
+As presented in the MR-Baseline algorithm (Algorithm~\ref{alg:MR-Baseline}), each pivot message $(v,N_v^H)$ needs to be processed in reduce instance $R_i$ only for 
+nodes ${u: u \in N_v^H ~ where~ h(u)=i}$. Interestingly, this information is  encoded within the pivot message. Thus, each pivot message is processed for all its requested core nodes once received 
+(Lines 9-11, Algorithm \ref{alg:Bermuda-EC}). 
+%Summing up all pivot messages, reduce instance $R_i$ recover the total work. 
+%
+%By default, the key partitioning function is a hash function over node ID {\ie}, $h(v) \in [0,k-1]$ where $k$ equals the number of reducers. 
+%Hash function is a good choice of universal key partition function for its light encoding cost and computation overhead. 
+
+\begin{algorithm}[tb]
+	\begin{algorithmic}[1]
+			\item[] \textbf{Map}: Input:($ \langle v; N_v^H \rangle$) 
+            \item[] {Let $h(.)$ be a key partitioning function into [0,k-1] }
+			\STATE $j \leftarrow h(v)$
+			\STATE emit $\langle j;(v,N_v^H) \rangle$
+			\STATE \emph{Group} the set of nodes in $N_v^H$ by $h(.)$
+			\FORALL {$i \in [0,k-1]$}
+				\IF {$gp_i \neq \emptyset$}
+					\STATE emit $\langle i;(v,N_v^H) \rangle$
+				\ENDIF
+			\ENDFOR
+            \item[]
+			\item[] \textbf{Reduce}:Input:$[\langle i;(v,N_v^H) \rangle]$ 
+			\STATE initiate all the core nodes' $N_u^H$ in main memory
+            \FORALL {pivot message $\langle i;(v,N_v^H) \rangle $}
+                \FORALL {$u \in N_v^H $ and $h(u)=i$}
+                    \FORALL {$w \in N_v^H \cap N_u^H $}
+                        \STATE emit $\triangle_{vuw}$
+                    \ENDFOR
+            \ENDFOR
+			\ENDFOR
+			\end{algorithmic}
+		\caption{Bermuda-EC}
+		\label{alg:Bermuda-EC}
+\end{algorithm}
+\begin{figure}[t]
+		\centering	
+        \includegraphics[scale=0.4]{figures/bermuda/BENode++2.eps}
+		\caption {\small{Bermuda-EC Execution.}}
+		\label{fig:Bermuda-EC}
+\end{figure}
+
+
+
+\subsubsection{Analysis of Bermuda Techniques}
+\label{sec:ECAnalysis}
+Extending  the analysis in Section \ref{sec:MR_baseline}, we demonstrate that Bermuda-EC achieves improvement over MR-Baseline w.r.t both space usage and execution efficiency. 
+Furthermore, we discuss the effect of the number of reducers  $k$ on the algorithm performance.
+
+\begin{theorem}
+\label{th:ECsize}
+	For a given number of reducers $k$, we have:
+    \begin{itemize}
+    	\item {The expected total size of the map output is $O(km)$}.
+        \item {The expected size of core messages to any reduce instance is O(m/k)}. 
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+	As shown in Algorithm \ref{alg:Bermuda-EC},  the size of the map output generated by node $v$ is at most $k*\hat{d_v}$.  Thus, the total size of the map output $T$ is as follows:
+    \vj
+    \[ T < \sum_{v \in V} k \hat{d_v} = k \sum_{v \in V} \hat{d_v}= km \]
+    For the second bound, observe that a random edge is present in a reduce instance $R_i$ and represented as a core message with probability $1/k$.    
+     By following the {\em Linearity of Expectation}, the expected number of the core messages to any reduce instance is $O(m*\frac{1}{k})$. 
+\end{proof}
+
+\textbf{Space Usage.} Theorem~\ref{th:ECsize} shows that when $k \ll \sqrt[]{m}$ (the usual case for massive graphs), 
+then the total size of the map output generated by Bermuda-EC algorithm is significantly 
+less than that  generated by the MR-Baseline algorithm. In other words, Bermuda -EC is able to handle even larger graphs with limited compute clusters. 
+%A detailed experimental comparison with MR-Baseline is given in the experiment section.
+\textbf{Execution Time.} A positive consequence of having a smaller intermediate result is that it requires less time for generating and shuffling/sorting the data. 
+Moreover, the  imbalance of the map outputs is also reduced significantly by limiting the replication factor of the pivot messages up to $k$.
+The next theorem shows the approximate variance of the number of the intermediate result from mappers. 
+When $k < E(x)$, it implies smaller variance among the mappers than that of the MR-Baseline algorithm. 
+Together, Bermuda -EC achieves better performance and scales to larger graphs compared to the MR-Baseline algorithm. 
+
+\begin{theorem}
+\label{th:BEC}
+	For a given graph $G(V,E)$, let a random variable x denotes the effective degree of any node in $G$ and the variance of x is denotes as Var(x). Then the expectation of x ($E(x)$) equals the average degree and computed as $E(x)=\frac{m}{n}$. For typical graphs, $Var(x) \neq 0$ and $E(x) \neq 0$ always hold. Since each mapper starts with approximately the same input size (say receives $c$ graph nodes), the variance of the map output's size under the Bermuda-EC Algorithm is  $O(2ck^2Var(x))$, 
+	where $k$ represents the number of reducers. 
+\end{theorem}
+
+\begin{proof}    
+    Assume the number of reducers is $k$. Given a graph node $v$, where its effective degree $\hat{d_v}=x$. 
+    Let random variable $y(x)$ be the number of distinct reducers processing the effective neighbors of $v$, and thus  $y(x) \leq k$. 
+    Then, the size of the map output generated by a single node $u$ would be $xy$, denoted as $g(x)$(Lines 3-4, Algorithm \ref{alg:Bermuda-EC}). 
+    Thus, the total size of the map output generated by $c$ nodes in a single mapper $T(X)=\sum_{i=1}^{c}g(x_i)$. 
+    Since $x_1,x_2,..x_c$ are independent and identically distributed random variables, then $Var(T(x))=c*Var(g(x))$. 
+    The approximate variance of $g(x)$ is as  follows 
+    \vj
+    \begin{align*}
+    	Var(xy) &= E(x^2y^2)- E(xy)^2 \\
+        		&< E(x^2y^2) \\
+        	    &< k^2E(x^2) \\
+           		&< k^2(E(x)^2+Var(x)) \\
+               &< 2k^2Var(x) 
+        \vspace{-4em}
+    \end{align*}
+As presented in \cite{Schank_2007}, $E(x^2) \approx \frac{m^{\frac{3}{2}}}{n}$ and $E(x)=\frac{m}{n}$. Thus $\frac{E(x^2)}{E(x)^2} \approx \frac{n}{\sqrt[]{m}} $. In many real graphs where $n^2 > m$ it implies $\frac{n} {\sqrt[]{m}} > \sqrt[]{m} >2$. It implies $E(x^2)> 2E(x)^2$, thus $Var(x)=E(x^2)-E(x)^2 > E(x)^2$.
+\end{proof}
+
+We now study in more details the effect of parameter $k$ (the number of reducers) on the space and time complexity for the Bermuda-EC algorithm.
+
+\textbf{Effect on Space Usage.} The reducers number $k$ trades off the memory used by a single reduce instance and the size of the intermediate data generated during the MapReduce job. 
+The memory used by a single reducer should not exceed the available memory of a single machine, {\ie}, $O(m/k)$ should be sub-linear to the size of main memory in a single machine. In addition, the total space used by the intermediate data must also remain bounded, {\ie}, $O(km)$ should be no larger than the total storage. 
+Given a cluster of machines, these two constraints define the bounds of $k$ for a given 
+input graph $G(V,E)$.  
+
+\textbf{Effect on Execution Time.} The reducers number $k$ trades off the reduce computation time and the time for shuffling and sorting. 
+As the parallelization degree $k$ increases, it reduces the computational time in the reduce phase. At the same time, the size of the intermediate data, {\ie}, $O(km)$ increases significantly as $k$ increases (notice that $m$ is very large), and
+thus the communication cost becomes a bottleneck in the job's execution. 
+Moreover, the increasing variance among mappers $O(2ck^2Var(x))$ implies a more significant straggler problem which slows down the execution progress. 
+
+In general, Bermuda-EC algorithm favors the smaller setting of $k$ for higher efficiency while subjects to memory bound that the 
+expected size of core message $O(m/k)$ should not exceed the available memory of a single reduce instance. 
+
+Unfortunately, for processing web-scale graphs such as \emph{ClueWeb} with more than 80 billion edges (and total size of approximately 700GBs)---which as we will show the state-of-art techniques cannot actually process---the number of reducers needed  for Bermuda-EC for acceptable performance is in the order of 100s. 
+Although, this number is very reasonable for most mid-size clusters, the intermediate results $O(km)$ will be huge, which leads to significant network congestion.  
+
+\textbf{Disk-Based Bermuda-EC:} A generalization to the proposed Bermuda-EC algorithm that guarantees 
+no failure even under the case where  the core messages cannot fit in a reducer's memory is the {\em Disk-Based Bermuda-EC} variation. 
+The idea is straightforward and relies on the usage of the local disk of each reducer. 
+The main idea is as follows: (1) Partition the core messages such that each partition fits into main memory,
+ and (2) Buffer a group of pivot messages, and then iterate over the core messages one partition at a time, and for each partition, identify the triangles as in the standard Bermuda-EC algorithm. 
+ Obviously, such method trades off between disk I/O (pivot message scanning) and main-memory requirement. For a setting of reduce number $k$, the expected size of core messages in a single reduce instance is $O(m/k)$, thus the expected number of rounds is $O(\frac{m}{kM})$ where $M$ represents the size of available main-memory for single reducer. The expected size of pivot message reaches $O(m)$. Therefore, the total disk I/O reaches $O(\frac{m^2}{kM})$. In the case of massive graph, it implies longer time. 

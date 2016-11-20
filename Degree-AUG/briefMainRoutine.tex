@@ -1,0 +1,17 @@
+\begin{algorithm}[!t]
+	\begin{algorithmic}[1]
+    	\item[] {\textbf{Input:}~Uncertain graph $\mathcal{G}$, adversary knowledge $ak$, obfuscation level $k$, tolerance level $\epsilon$, size multiplier $c$ and white noise level $q$ }
+        \item[] {\textbf{Output:}~The anonymized result $\tilde{\mathcal{G}}_{f}$}
+        \STATE {Initiation of an lower bound $\sigma_{l}$ and an upper bound $\sigma_{u}$}
+        \WHILE{(not terminated)}
+        	\STATE {Search of $(k,\epsilon)$-obf using standard deviation $\sigma$ \\ 
+            $\langle \tilde{\epsilon}, \tilde{\mathcal{G}}  \rangle$ $\leftarrow$ \texttt{GenerateObfuscation($\mathcal{G}$,$\sigma_{u}$,$ak$,$k$,$\epsilon$,$c$,$q$)}}
+            \STATE {Update the anonymized result if necessary}
+            \STATE {Update the lower bound or the upper bound}
+            \STATE {Update the size multiplier $c$ if necessary}
+        \ENDWHILE
+        \STATE{return the anonymized result $\tilde{\mathcal{G}}_{f}$}
+        \caption{Anonymization over uncertain graphs}
+    	\label{alg:binarySearch}
+    \end{algorithmic}
+\end{algorithm}

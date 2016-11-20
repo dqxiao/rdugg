@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: proposal_main.aux
+A level-1 auxiliary file: preface.aux
+The style file: abbrv.bst
+Database file #1: bermuda.bib.bib
+I was expecting a `,' or a `}'---line 44 of file bermuda.bib.bib
+ :  
+ :  volume = {4},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 66 of file bermuda.bib.bib
+ :  
+ :  volume = {6},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 317 of file bermuda.bib.bib
+ :  
+ :  Title = {High quality, scalable and parallel community detection for large real graphs},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Database file #2: aug.bib.bib
+Warning--I didn't find a database entry for "Han:2011:DMC:1972541"
+Warning--I didn't find a database entry for "GPS"
+Warning--empty journal in Colbourn_Colbourn_1987
+Warning--empty journal in Kempe_Maximizing_2003
+Warning--empty journal in whitehadoop_2010
+Warning--empty journal in Ying_Randomizing_2008
+You've used 21 entries,
+            2118 wiz_defined-function locations,
+            618 strings with 6798 characters,
+and the built_in function-call counts, 6623 in all, are:
+= -- 657
+> -- 324
+< -- 7
++ -- 129
+- -- 106
+* -- 381
+:= -- 1126
+add.period$ -- 63
+call.type$ -- 21
+change.case$ -- 116
+chr.to.int$ -- 0
+cite$ -- 25
+duplicate$ -- 278
+empty$ -- 460
+format.name$ -- 106
+if$ -- 1385
+int.to.chr$ -- 0
+int.to.str$ -- 21
+missing$ -- 21
+newline$ -- 108
+num.names$ -- 42
+pop$ -- 124
+preamble$ -- 1
+purify$ -- 95
+quote$ -- 0
+skip$ -- 235
+stack$ -- 0
+substring$ -- 319
+swap$ -- 78
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 84
+warning$ -- 4
+while$ -- 62
+width$ -- 23
+write$ -- 215
+(There were 3 error messages)

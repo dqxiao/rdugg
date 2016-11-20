@@ -1,0 +1,116 @@
+\begin{thebibliography}{10}
+
+\bibitem{Adar_Managing_2007}
+E.~Adar and C.~Re.
+\newblock Managing uncertainty in social networks.
+\newblock {\em {IEEE} Data Eng. Bull.}, 2007.
+
+\bibitem{Patric}
+S.~Arifuzzaman, M.~Khan, and M.~Marathe.
+\newblock Patric: A parallel algorithm for counting triangles in massive
+  networks.
+\newblock {\em CIKM}, pages 529--538, 2013.
+
+\bibitem{MOBall}
+M.~O. Ball.
+\newblock Computational complexity of network reliability analysis: An
+  overview.
+\newblock {\em IEEE Transactions on Reliability}, 1986.
+
+\bibitem{X-Pregel}
+N.~Bao and T.~Suzumura.
+\newblock Towards highly scalable pregel-based graph processing platform with
+  x10.
+\newblock {\em WWW}, pages 501--508, 2013.
+
+\bibitem{Becchetti_Boldi_Castillo_Gionis_2008}
+L.~Becchetti, P.~Boldi, C.~Castillo, and A.~Gionis.
+\newblock Efficient semi-streaming algorithms for local triangle counting in
+  massive graphs.
+\newblock {\em KDD}, pages 16--24, 2008.
+
+\bibitem{Boldi_Injecting_2012}
+P.~Boldi, F.~Bonchi, A.~Gionis, and T.~Tassa.
+\newblock Injecting uncertainty in graphs for identity obfuscation.
+\newblock {\em SIGMOD}, 2012.
+
+\bibitem{Bonchi_Identity_2014}
+F.~Bonchi, A.~Gionis, and T.~Tassa.
+\newblock Identity obfuscation in graphs through the information theoretic
+  lens.
+\newblock {\em ICDE}, 2014.
+
+\bibitem{casasprivacy}
+J.~Casas-Roma.
+\newblock Privacy-preserving on graphs using randomization and edge-relevance.
+\newblock {\em Modeling Decisions for Artificial Intelligence}, 2015.
+
+\bibitem{Colbourn_Colbourn_1987}
+Colbourn and Colbourn.
+\newblock The combinatorics of network reliability.
+\newblock 1987.
+
+\bibitem{MapReduceGoogle}
+J.~Dean and S.~Ghemawat.
+\newblock Mapreduce: Simplified data processing on large clusters.
+\newblock {\em Commun. ACM}, 2008.
+
+\bibitem{Kempe_Maximizing_2003}
+D.~Kempe, J.~Kleinberg, and {\'E}.~Tardos.
+\newblock Maximizing the spread of influence through a social network.
+\newblock 2003.
+
+\bibitem{keramidascache2007}
+G.~Keramidas and P.~Petoumenos.
+\newblock Cache replacement based on reuse-distance prediction.
+\newblock {\em ICCD}, 2007.
+
+\bibitem{Parchas_Gullo_Papadias_Bonchi_2014}
+Parchas, Gullo, Papadias, and Bonchi.
+\newblock The pursuit of a good possible world: extracting representative
+  instances of uncertain graphs.
+\newblock {\em SIGMOD}, 2014.
+
+\bibitem{parkmapreduce2014}
+H.~Park, F.~Silvestri, U.~Kang, and R.~Pagh.
+\newblock {MapReduce} triangle enumeration with guarantees.
+\newblock {\em CIKM}, pages 1739--1748, 2014.
+
+\bibitem{petoumenos2009}
+P.~Petoumenos and G.~Keramidas.
+\newblock Instruction-based reuse-distance prediction for effective cache
+  management.
+\newblock {\em MSP}, pages 60--68, 2009.
+
+\bibitem{Potamias_K_2010}
+M.~Potamias, F.~Bonchi, A.~Gionis, and G.~Kollios.
+\newblock K-nearest neighbors in uncertain graphs.
+\newblock {\em VLDB}, 2010.
+
+\bibitem{Schank_2007}
+T.~Schank.
+\newblock Algorithmic aspects of triangle-based network analysis.
+\newblock {\em Phd in computer science}, 2007.
+
+\bibitem{Suri_Vassilvitskii_2011}
+S.~Suri and S.~Vassilvitskii.
+\newblock Counting triangles and the curse of the last reducer.
+\newblock {\em KDD}, pages 607--614, 2011.
+
+\bibitem{whitehadoop_2010}
+T.~White.
+\newblock Hadoop: The definitive guide.
+\newblock 2010.
+
+\bibitem{Ying2009}
+X.~Ying, K.~Pan, X.~Wu, and L.~Guo.
+\newblock Comparisons of randomization and k-degree anonymization schemes for
+  privacy preserving social network publishing.
+\newblock {\em SNA-KDD}, 2009.
+
+\bibitem{Ying_Randomizing_2008}
+X.~Ying and X.~Wu.
+\newblock Randomizing social networks: a spectrum preserving approach.
+\newblock pages 739--750, 2008.
+
+\end{thebibliography}

@@ -1,0 +1,44 @@
+\begin{algorithm}[t!]
+	\begin{algorithmic}[1]
+    	\item[] {\textbf{Input:}~Uncertain graph $\mathcal{G}=(V,E,\mathit{p})$, $ak,k,\epsilon,c,q$, \\and standard deviation $\sigma$ }
+        \item[] {\textbf{Output:}~A pair $\langle \tilde{\epsilon}, \tilde{\mathcal{G}} \rangle$} 
+        \STATE  {\textbf{compute} the uniqueness $U(v)$ for all the nodes}
+        \STATE  {\textbf{compute} the \texttt{centrality} $RC(v)$ for all the nodes}
+        \STATE  {$Q(v) \leftarrow U(v) \cdot RC(v)$}
+        \STATE {$H \leftarrow$  the set of $\lceil \frac{\epsilon}{2} |V| \rceil$ with largest $Q(v)$}
+        \COMMENT{Excluding}
+     	\STATE {Normalized $RC(v)$; $Q(v) \leftarrow U(v) \cdot 1-RC(v)$;}
+        \STATE {$\tilde{\epsilon} \leftarrow 1$}
+   		\FOR{$t$ times} 
+        	\STATE {$E_{C} \leftarrow E$} % either it become probabilistic 
+            \COMMENT{Reliability-oriented Edge Selection}
+         	\REPEAT  
+            	\STATE{randomly pick a vertex $u \in V \setminus H$ according to $Q$}
+            	\STATE{randomly pick a vertex $v \in V \setminus H$ according to $Q$}
+            	\STATE{draw $w$ uniformly at random from $[0,1]$} 
+            \IF {$(u,v) \in E$} 
+				\IF {\texttt{$w > p(e)$}} 
+                	\STATE {$E_{C} \leftarrow E_{c} \setminus \lbrace(u,v)\rbrace$}
+                \ENDIF
+            \ELSE \STATE{$E_{c} \leftarrow E_{c} \cup \lbrace(u,v)\rbrace$}
+            \ENDIF 
+            \UNTIL{$E_{C}=c|E|$}
+            \FORALL {$e \in E_{C}$} 
+            	\STATE {\textbf{compute} $\sigma(e)$}
+                \COMMENT{Edge Probability Perturbation}
+                \STATE {draw $w$ uniformly at random from $[0,1]$}
+				\IF {$w < q$} \STATE{$r_{e} \leftarrow U(0,1)$}
+                \ELSE 
+                \STATE{$r_{e} \leftarrow R_{\sigma(e)}$}
+                \ENDIF
+                \STATE \textbf{$\tilde{p}(e) \leftarrow p(e)+ 2(0.5-p(e))\cdot r_{e}$}
+            \ENDFOR
+            \STATE {$\hat{\epsilon} \leftarrow checkAnonymity(\tilde{\mathcal{G}})$} 
+            \COMMENT{Ensure Anonymity}
+           	\STATE {Update result $\langle \tilde{\epsilon}, \tilde{\mathcal{G}} \rangle$ if $\hat{\epsilon}<\tilde{\epsilon}$}
+        \ENDFOR 
+        \STATE {return $\langle \tilde{\epsilon}, \tilde{\mathcal{G}} \rangle$}
+      	\caption{GenerateObfuscation}
+        \label{alg:genObf}
+    \end{algorithmic}
+\end{algorithm}

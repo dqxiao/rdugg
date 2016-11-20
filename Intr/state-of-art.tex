@@ -1,0 +1,35 @@
+\section{State-Of-the-Art}
+\label{sec:state-of-the-art}
+
+
+
+
+\textbf{XX.} A few recent efforts have been proposed to support distributed XX. Some utilize different distributed computing paradigms that, unlike MapReduce, either suffer from a bottleneck by requiring a central master node to split and broadcast data to each slave node XX, or they allow all nodes unrestricted exchange of data with each other XXX. In contrast, the MapReduce infrastructure neither assumes a central node nor does it allow data exchange among the mappers (nor among the reducers) to enable easier distribution of tasks and higher scalability. Therefore none of these techniques is applicable on the MapReduce infrastructure. To support the distributed outlier detection on MapReduce, partitioning approaches that make sure each reducer can detect outliers independently from other reducers have to be designed.
+
+In the literature Map-Reduced based approaches have been proposed for XXX techniques such as XXX. Although they investigate the key concepts in distributed systems such as \textit{load balancing} and \textit{efficient partitioning} that determine the efficiency of distributed mining algorithms, their methods cannot be applied in our outlier detection area as shown below.
+
+For example XXX. 
+
+\textbf{}
+In recent years researchers started to look at the problem of XXX \cite{}. Specifically \cite{} proposed solutions for XX. \cite{} improves upon this solution \cite{} by now XX. All solutions leverage the overlap of sliding windows and thus avoid XX.
+
+
+However, these existing techniques \cite{} didn't explore the optimization opportunities enabled by the \textit{the critical observation} below. That is, they didn't exploit the fact that outliers by nature XX. 
+
+Furthermore, all of the above approaches focus on handling XX with. The simultaneous execution of XX.
+
+In the broader area of XX,  the main focus of previous work has been on XX.  Their methods include XX. However the key problem we aim to address in this dissertation is different from the more general purpose optimization effort required by the traditional SQL query sharing. XXX. 
+
+%Furthermore, their partitioning strategy focuses on how to efficiently compute pair distance. This is specific to similarity joins. Therefore it is not applicable in our outlier detection context.
+
+\section{Challenges}
+\label{sec.challenge}
+
+Scaling the outlier detection techniques to big data is challenging.
+
+% First, designing XXX is extremely difficult, because the processing of XXX is resource-consuming due to the algorithmic complexity of the mining process. Intuitively the default partitioning solution in MapReduce would randomly spread the information that is necessary to prove the status of one point into possibly numerous nodes. Therefore a point \textit{p} would not be able to prove its outlier status on the local reducer node on which \textit{p} resides. This inevitably would lead to a multi-pass solution, thus introducing heavy communication costs due to requiring a repeated re-distribution of the whole dataset. On the other hand partitioning the data points with similar characteristics to the same node might be able to preserve the norm on the local node for each data point to evaluate its abnormity. However real world datasets tend to be skewed \cite{DBLP:conf/vldb/PoosalaI97} instead of being uniformly distributed over their domain spaces. For this reason, data characteristics-based partitioning suffers from the problem that the number of points allocated to each node may extremely vary $-$ leading to an unbalanced workload.
+% As shown in \cite{survey2009}, the algorithmic complexity of most outlier detection techniques is known to be quadratic with respect to the number of points. 
+
+Second, designing an effective partitioning strategy for XX approach is challenging. 
+
+Third, it is challenging to XXX.  First, due to the algorithmic complexity of mining techniques \cite{Han:2011:DMC:1972541}, processing each outlier request from scratch over big datasets each time when it is submitted clearly cannot satisfy the response time requirement of interactive system. On the other hand XXX. 

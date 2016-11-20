@@ -1,0 +1,109 @@
+\documentclass[12pt]{report}
+
+\usepackage{setspace}
+\usepackage{bibcontents}
+\usepackage{times,amsmath,epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{epstopdf}
+\usepackage{latexsym}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{balance}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{titlesec} % used for additional level 
+
+\setlength{\textheight}{8.63in}
+\setlength{\textwidth}{5.9in}
+\setlength{\topmargin}{-0.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0.3in}
+\setlength{\headsep}{0.0in}
+\linespread{1.25}
+\newcommand{\ie}[0]{\textit{i.e.}}
+\newcommand{\eg}[0]{\textit{e.g.}}
+\newcommand{\etal}[0]{\textit{et al.}}
+
+\newcommand{\keobf}{\textit{$(k,\epsilon)$-obf}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\repAn}[0]{\textnormal{Rep-An}}
+\newcommand{\augcrr}[0]{\textnormal{AUG-CRR}}
+\newcommand{\augrr}[0]{\textnormal{AUG-RR}}
+\newcommand{\augc}[0]{\textnormal{AUG-C}}
+\newcommand{\aug}[0]{\textnormal{AUG}} 
+\newcommand{\funcname}[0]{\textit{GenAnonymization}}
+
+\renewcommand\thesubfigure{(\alph{subfigure})} % for
+\newtheorem{theorem}{Theorem} 
+\newtheorem{definition}{Definition}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proof}{Proof}
+
+\begin{document}
+\setcounter{secnumdepth}{2}
+
+% \newcommand{\brk}{\vspace*{0.15in}}
+% \newcommand{\ssp}{\singlespacing}
+% \newcommand{\dsp}{\doublespacing}
+% \newcommand{\hbrk}{\\[0.4in]}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bd}{\begin{description}}
+\newcommand{\ed}{\end{description}}
+\newcommand{\vj}{\vspace{-1em}}
+\newcommand{\svj}{\vspace{-0em}}
+
+
+% \titleformat{\paragraph}
+% {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+% \titlespacing*{\paragraph}
+% {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%\renewcommand{\baselinestretch}{1}  %turns on double spacing
+
+% \doublespacing
+\include{preface}
+
+
+\tableofcontents
+
+% THAT'S IT. REALLY. Everything else is automatic. No formatting, no headline.
+% All predefined.
+% Now - just as easy - the List of Figures.
+% This will catch all objects enclosed in \begin{figure}\end{figure}
+% statements.
+
+%\listoffigures
+
+% There is also a list of tables, if you have any.
+% This will catch all objects enclosed in \begin{table}\end{table}
+% statements.
+%\listoftables
+
+
+% And we need a clear separation between preface and text, otherwise
+% the numbering gets confused.
+
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{acknowledgments}
+\input{introduction}
+\input{preliminaries}
+\input{bermuda}
+\input{DegreeAUG}
+
+\bibliographystyle{abbrv}
+\bibliography{bermuda.bib,aug.bib}
+\end{document}
+
