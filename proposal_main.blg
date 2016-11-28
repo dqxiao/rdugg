@@ -20,51 +20,58 @@ I was expecting a `,' or a `}'---line 317 of file bermuda.bib.bib
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Database file #2: aug.bib.bib
-Warning--I didn't find a database entry for "Han:2011:DMC:1972541"
+Warning--I didn't find a database entry for ""
 Warning--I didn't find a database entry for "GPS"
+Warning--there's a number but no volume in Backstrom2011
 Warning--empty journal in Colbourn_Colbourn_1987
+Warning--empty journal in Hay_Anonymizing_2007
+Warning--empty booktitle in Jorgensen2016
 Warning--empty journal in Kempe_Maximizing_2003
+Warning--empty publisher in Nagle_EWNI_2012
+Warning--empty booktitle in Narayanan2009
 Warning--empty journal in whitehadoop_2010
+Warning--empty booktitle in DegreeAUG
+Warning--empty year in DegreeAUG
 Warning--empty journal in Ying_Randomizing_2008
-You've used 21 entries,
+You've used 59 entries,
             2118 wiz_defined-function locations,
-            618 strings with 6798 characters,
-and the built_in function-call counts, 6623 in all, are:
-= -- 657
-> -- 324
-< -- 7
-+ -- 129
-- -- 106
-* -- 381
-:= -- 1126
-add.period$ -- 63
-call.type$ -- 21
-change.case$ -- 116
+            812 strings with 12768 characters,
+and the built_in function-call counts, 19921 in all, are:
+= -- 1933
+> -- 1113
+< -- 19
++ -- 440
+- -- 376
+* -- 1256
+:= -- 3380
+add.period$ -- 176
+call.type$ -- 59
+change.case$ -- 364
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 278
-empty$ -- 460
-format.name$ -- 106
-if$ -- 1385
+cite$ -- 70
+duplicate$ -- 787
+empty$ -- 1329
+format.name$ -- 376
+if$ -- 4126
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 21
-newline$ -- 108
-num.names$ -- 42
-pop$ -- 124
+int.to.str$ -- 59
+missing$ -- 60
+newline$ -- 297
+num.names$ -- 118
+pop$ -- 395
 preamble$ -- 1
-purify$ -- 95
+purify$ -- 306
 quote$ -- 0
-skip$ -- 235
+skip$ -- 650
 stack$ -- 0
-substring$ -- 319
-swap$ -- 78
-text.length$ -- 7
+substring$ -- 908
+swap$ -- 220
+text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 84
-warning$ -- 4
-while$ -- 62
-width$ -- 23
-write$ -- 215
+type$ -- 234
+warning$ -- 11
+while$ -- 176
+width$ -- 61
+write$ -- 602
 (There were 3 error messages)

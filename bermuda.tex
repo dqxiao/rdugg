@@ -1,8 +1,6 @@
 \chapter{Distributed Triangle Listing Algorithm}
 \label{chp:bec}
-In this chapter, I will briefly review the distributed triangle listing techniques I developed for MapReduce Framework. These techniques have been submitted as a conference paper \cite{}.
-
-In this work, we present Bermuda method which effectively reduces the size of the intermediate data via redundancy elimination and sharing of messages whenever possible. As a result, Bermuda achieves orders-of-magnitudes of speedup and enables processing larger graphs that other techniques fail to process under the same resources. Bermuda exploits the locality of processing, i.e.,  in which reduce instance each graph vertex will be processed, to avoid the redundancy of generating messages from mappers to reducers. Bermuda also proposes novel message sharing techniques within each reduce instance to increase the usability of the received messages. 
+In this chapter, I will briefly review the distributed triangle listing techniques I developed for MapReduce Framework. These techniques have been published as a conference paper \cite{bermuda}. In this work, we present Bermuda method which effectively reduces the size of the intermediate data via redundancy elimination and sharing of messages whenever possible. As a result, Bermuda achieves orders-of-magnitudes of speedup and enables processing larger graphs that other techniques fail to process under the same resources. Bermuda exploits the locality of processing, i.e.,  in which reduce instance each graph vertex will be processed, to avoid the redundancy of generating messages from mappers to reducers. Bermuda also proposes novel message sharing techniques within each reduce instance to increase the usability of the received messages. 
 
 \input{bec.tex}
 \input{bvc.tex}

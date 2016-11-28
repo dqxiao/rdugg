@@ -1,8 +1,7 @@
 \chapter {Preliminaries}
 \label{chp:pre}
 
-In my dissertation, I will study triangle listing problem for web-scale graphs  and privacy protection issue in the context of uncertain graphs. For the later topics, we focus on  resisting the degree-based node re-identification. Here, we give the definitions of uncertain graph and attack model, privacy criteria related with uncertain graph anonymization problem. We also give the formal formulation of proposed problems. 
-
+In my dissertation, I will study triangle listing problem for web-scale graphs and anonymization techniques in the context of uncertain graphs. For the later topics, we focus on resisting the degree-based node re-identification. Here, we give the definitions of uncertain graph model and attack model, privacy criteria related with uncertain graph anonymization problem. We also give the formal formulation of proposed problems. 
 
 \section{Distributed Triangle Listing}
 \subsection{Triangle Listing Problem}
@@ -119,25 +118,10 @@ Let  $\mathcal{G}=(V,E,\mathit{p})$ be an uncertain graph, where $V$ is the set 
 \begin{equation*}
     Pr[G]=\prod_{e \in E_{G}} {\mathit{p}(e)} \prod_{e \in E     \setminus E_{G}} (1-\mathit{p}(e))
 \end{equation*}
-We assume that the uncertain graph is simple, {\ie}, the uncertain graph is undirected containing no self-loops.  
+We can think of the uncertain graph $\mathcal{G}$ as a world generator process, and each graph $G\in W(\mathcal{G})$ as a possible world. 
 
 \subsection{Attack Model}
-Our uncertain graph anonymization problem is related to the conventional graph anonymization problem, which has been extensively studied. As Hay {\etal} pointed out, the structural information such as node degree, 1-neighbood can be utilized to breach user privacy. For example, \cite{} consider the case that , while \cite{} consider the case that XX. Different anonymization techniques are designed to resist different kinds of privacy attack.
-
-The first step to anonymization is to know what external information of a graph may be acquired by an adversary. In our work, we assume that the information of victim node degree is easy to be collected by the adversary, consistent to the literture~\cite{}.  In fact, degree-based de-anonymization is one of the most serious privacy attacks in the context of deterministic graphs. The knowledge  could also be understood as some \emph{assertion} of the individual, which could be evaluated to \emph{true} or \emph{false} based on the topology structure of the network. 
-
-In the context of deterministic graphs, such knowledge can be expressed as one assertion with certainty such as {\emph Ana has 3 neighbors. In the context of uncertain graphs, such knowledge can be a little different. In an uncertain graph, for a given node $v$, its degree $d_{v}$ is defined in a probabilistic way. For example, node $a$ in Figure \ref{}, its node degree may be $3$ or $2$ in different possible worlds. 
-
-It is difficult to model the specific degree-related knowledge used by the adversaries by advance. In our work, we first consider the adversary can and only acquire the expected node degree of victim nodes. For example, the adversary knows that the expected value of the number of Ana's neighbors should $3$  as shown in Figure \ref{}.  Later, we consider the adversary can acquire more comprehensive knowledge of node degree of victim nodes such as the distribution function. For example, the adversary may know the distribution of the number of Ana's neighbors as ${(3:),(2:),(1:),(0:)}$. In this work, we will present the corresponding solution to resist ever-discussed privacy attack in the context of uncertain graphs. 
-
-The second step to anonymization is to know how the adversary links the external knowledge such as node degree to a node in the perturbed graph. In the deterministic graph, degree-based node re-identification is straightforward. Let $\mathcal{G}$ be a graph and $\acute{\mathcal{G}}$  be the anonymized version of the given graph. The adversary can get a number of \texttt{match} vertices in $\acute{\mathcal{G}}$, {\ie}, the nodes $U_{c}$ with the \texttt{match} degree. When $\acute{\mathcal{G}}$ is a deterministic one, for a given node in $\acute{\mathcal{G}}$, the assertion is evaluated either \emph{true} or \emph{false} with certainty.  When $\acute{\mathcal{G}}$ is an uncertain one, the assertion is evaluated based on the graph structure combined with possible world semantics and is defined a probabilistic way. For example, it is said that the probability that the node $a$ was observed with degree $3$ is $0.504$. Following this path, we consider the matching attack is performed between a random variable, namely, find the equal random variable. Namely, for a given node $u$ in $\acute{\mathcal{G}}$, it is defined as the probability that the random variable $d_{u}$ is equal to the adversary knowledge $d_{v}$, denotes as $P(d_{u}=d_{v})$. It can be computed as 
-\begin{equation}
-    P(d_{u}=d_{v})= \sum_{i \in Z } P(d_{u}=i) P(d_{v}=i) 
-\end{equation}
-
-%%%
-\subsection{Privacy Criteria}
-\begin{figure*}[!t]
+\begin{figure*}[t!]
     \centering
     \begin{subfigure}[t]{0.4\textwidth}
         \centering
@@ -154,6 +138,21 @@ The second step to anonymization is to know how the adversary links the external
     \caption{Uncertain graph anonymization.}
     \label{fig:augExample}
 \end{figure*}
+Uncertain graph anonymization problem is related to the conventional graph anonymization problem, which has been extensively studied. As Hay {\etal} pointed out, the structural information such as node degree, 1-neighbood can be utilized to breach user privacy. For example, \cite{Boldi_Injecting_2012,Liu_Towards_2008,Thompson_The_2009} consider the case that a vertex can be re-identified by its degree, while \cite{Cormode_Anonymizing_2008,Wu_k_2010} consider the case that a vertex can be re-identified by degrees of it and its neighbood. Different anonymization techniques are designed to resist different kinds of privacy attack.
+
+The first step to anonymization is to know what external information of a graph may be acquired by an adversary. In our work, we assume that the information of victim node degree is easy to be collected by the adversary, consistent to the literture~\cite{Liu_Towards_2008,Thompson_The_2009,Boldi_Injecting_2012,Wu_k_2010,Cormode_Anonymizing_2008}.  In fact, degree-based de-anonymization is one of the most serious privacy attacks in the context of deterministic graphs. The knowledge  could also be understood as some \emph{assertion} of the individual, which could be evaluated to \emph{true} or \emph{false} based on the topology structure of the network. 
+
+In the context of deterministic graphs, such knowledge can be expressed as one assertion with certainty such as {\emph Ana has 3 neighbors. In the context of uncertain graphs, such knowledge can be a little different. Given an uncertain graph $\mathcal{G}$, let the degree of a fixed node $v$ to be $d_{v}$, clearly the observation of $d_{v}$ differs on the possible worlds $G \in W(\mathcal{G})$. We define the $d_{v}$ as a random variable with a known distribution. We base our degree-related adversary knowledges on standard stastical measures of the distribution. 
+
+It is difficult to model the specific degree-related knowledge used by the adversaries by advance. In our work, we first consider the adversary can and only acquire the expected node degree of victim nodes. For example, the adversary knows that the expected value of the number of Ana's neighbors should $3$  as shown in Figure \ref{fig:trueGraph}.  Later, we consider the adversary can acquire more comprehensive knowledge of node degree of victim nodes such as the distribution function. For example, the adversary may know the distribution of the number of Ana's neighbors as ${(3:0.504),(2:0.398),(1:0.092),(0:0.006)}$. 
+
+The second step to anonymization is to know how the adversary links the external knowledge such as node degree to a node in the perturbed graph. In the deterministic graph, the process of node de-anonymization with the external node degree information is quite straightforward. Let $\mathcal{G}$ be a graph and $\acute{\mathcal{G}}$ be the anonymized version of the given graph. The adversary can get a number of \texttt{match} vertices in $\acute{\mathcal{G}}$, {\ie}, the nodes $U_{c}$ with the \texttt{match} degree. When $\acute{\mathcal{G}}$ is a deterministic one, for a given node in $\acute{\mathcal{G}}$, the assertion is evaluated either \emph{true} or \emph{false} with certainty. When the anonymized output $\acute{\mathcal{G}}$ is probabilistic one, the matching attack is performed over all the possible worlds. Following the path, the matching event would be observed with an probability value which defined in a continous range $(0,1)$. For example, the probability that the node $a$ was observed with degree $3$ is $0.504$ in Figure \ref{}. We consider the matching attack is performed between a random variable, namely, find the equal random variable. Namely, for a given node $u$ in $\acute{\mathcal{G}}$, it is defined as the probability that the random variable $d_{u}$ is equal to the adversary knowledge $d_{v}$, denotes as $P(d_{u}=d_{v})$. It can be computed as 
+\begin{equation*}
+    P(d_{u}=d_{v})= \sum_{i \in Z } P(d_{u}=i) P(d_{v}=i) 
+\end{equation*}
+
+%%%
+\subsection{Privacy Criteria}
 As ever discussed, we want to publish the anonymized version of uncertain graphs where node identity is obfuscated enough. We adopt $\keobf$ model, proposed in \cite{Bonchi_Identity_2014}, to quantify the anonymity level achieved by an anonymized graph (uncertain graph).
 Its formal definition is as follow: 
 \begin{definition}
@@ -176,7 +175,7 @@ The uncertain graph $\mathcal{G}$ is $(k,\epsilon)$-obf with respect to property
 \end{figure}
 
 \emph{Figure \ref{fig:entropyExample}  gives an example of how to compute degree entropy for the uncertain graph in Figure \ref{fig:trueGraph}. Each row in the top side is the degree distribution for the corresponding node. For example, node $a$ has degree $0$ with probability $(1-0.9)(1-0.8)(1-0.7)=0.006$. The last row in the top side is the sum of probability over all the nodes. For example, $S(0)=0.006+0.054+0.020+0.180=0.26$.
-The bottom one normalizes values in each column to get distribution $Y_{P(v)}$. For example, $Y_{0}(a)$= $\frac{X_{0}(a)}{S(0)}=0.023$. The entropy $H(Y_d(v))$ for each degree value $\omega$ is shown in the last bottom row. Given $k=3, \log_{2}{3}=1.58$, node $b,c$ with expected degree $2$ and $d$ with true degree $1$ satisfies $k$-obf while $a$ with expected degree $3$ fails, thus $\epsilon=0.25$. }
+The bottom one normalizes values in each column to get distribution $Y_{P(v)}$. For example, $Y_{0}(a)$= $\frac{X_{0}(a)}{S(0)}=0.023$. The entropy $H(Y_d(v))$ for each degree value $\omega$ is shown in the last bottom row. Given $k=3, \log_{2}{3}=1.58$, node $b,c$ with expected degree $2$ and $d$ with true degree $1$ satisfies $k$-obf while $a$ with expected degree $3$ fails, thus $\epsilon=0.25$.}
 
 \subsection{Reliability-based Utility Criteria}
 Inspired by the importance of reliability, we suggest to quantify the utility loss, anonymization cost, as the reliability difference between the anonymized result $\tilde{\mathcal{G}}$ and the original one $\mathcal{G}$, reliability discrepancy. We proceed to explain its formal definition. 

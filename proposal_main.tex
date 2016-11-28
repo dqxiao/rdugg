@@ -16,6 +16,7 @@
 \usepackage{balance}
 \usepackage[labelformat=simple]{subcaption}
 \usepackage{titlesec} % used for additional level 
+\usepackage{array} % used for scaling table 
 
 \setlength{\textheight}{8.63in}
 \setlength{\textwidth}{5.9in}
@@ -45,6 +46,8 @@
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
 \newtheorem{proof}{Proof}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 
 \begin{document}
 \setcounter{secnumdepth}{2}
@@ -69,8 +72,8 @@
 % {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 %\renewcommand{\baselinestretch}{1}  %turns on double spacing
-
-% \doublespacing
+%
+%\doublespacing
 \include{preface}
 
 
@@ -102,6 +105,8 @@
 \input{preliminaries}
 \input{bermuda}
 \input{DegreeAUG}
+\input{DegreeDistAUG}
+\input{schedule.tex}
 
 \bibliographystyle{abbrv}
 \bibliography{bermuda.bib,aug.bib}

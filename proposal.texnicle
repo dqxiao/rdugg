@@ -85,12 +85,12 @@
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z102"></relationship>
     </object>
     <object type="UISETTINGS" id="z104">
-        <attribute name="pdfviewscrollrect" type="string">{{0, 2801.1689351484615}, {620, 638.36669335434908}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 0.10889771073346731}, {620, 529.4289508632138}}</attribute>
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="logoutputlevel" type="int16">0</attribute>
-        <attribute name="editorwidth" type="float">511.5</attribute>
+        <attribute name="editorwidth" type="float">668</attribute>
         <attribute name="controlswidth" type="float">220</attribute>
         <attribute name="consoleview" type="int16">0</attribute>
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z102"></relationship>
@@ -106,12 +106,12 @@
     </object>
     <object type="TEXFILE" id="z106">
         <attribute name="wasopen" type="bool">0</attribute>
-        <attribute name="visiblerect" type="string">{{0, 1077}, {483.5, 363}}</attribute>
-        <attribute name="lasteditdate" type="date">501184097.13371998071670532227</attribute>
+        <attribute name="visiblerect" type="string">{{0, 62}, {646, 363}}</attribute>
+        <attribute name="lasteditdate" type="date">502004946.28159499168395996094</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">501184097.04849201440811157227</attribute>
+        <attribute name="fileloaddate" type="date">502004947.48584699630737304688</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{2872, 0}</attribute>
+        <attribute name="cursor" type="string">{840, 0}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
         <attribute name="name" type="string">proposal_main.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>

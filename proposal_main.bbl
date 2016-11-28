@@ -5,11 +5,22 @@ E.~Adar and C.~Re.
 \newblock Managing uncertainty in social networks.
 \newblock {\em {IEEE} Data Eng. Bull.}, 2007.
 
+\bibitem{Alon_Yuster_Zwick_1997}
+N.~Alon, R.~Yuster, and U.~Zwick.
+\newblock Finding and counting given length cycles.
+\newblock {\em Algorithmica}, 1997.
+
 \bibitem{Patric}
 S.~Arifuzzaman, M.~Khan, and M.~Marathe.
 \newblock Patric: A parallel algorithm for counting triangles in massive
   networks.
 \newblock {\em CIKM}, pages 529--538, 2013.
+
+\bibitem{Backstrom2011}
+L.~Backstrom, C.~Dwork, and J.~Kleinberg.
+\newblock Wherefore art thou r3579x?: Anonymized social networks, hidden
+  patterns, and structural steganography.
+\newblock {\em WWW}, (12):133--141, Dec. 2011.
 
 \bibitem{MOBall}
 M.~O. Ball.
@@ -23,16 +34,39 @@ N.~Bao and T.~Suzumura.
   x10.
 \newblock {\em WWW}, pages 501--508, 2013.
 
+\bibitem{Batagelj_Mrvar_2001}
+V.~Batagelj and A.~Mrvar.
+\newblock A subquadratic triad census algorithm for large sparse networks with
+  small maximum degree.
+\newblock {\em Social networks}, 2001.
+
 \bibitem{Becchetti_Boldi_Castillo_Gionis_2008}
 L.~Becchetti, P.~Boldi, C.~Castillo, and A.~Gionis.
 \newblock Efficient semi-streaming algorithms for local triangle counting in
   massive graphs.
 \newblock {\em KDD}, pages 16--24, 2008.
 
+\bibitem{Berry_Hendrickson_LaViolette_Phillips_2011}
+J.~Berry, B.~Hendrickson, R.~LaViolette, and C.~Phillips.
+\newblock Tolerating the community detection resolution limit with edge
+  weighting.
+\newblock {\em Physical Review E}, 2011.
+
+\bibitem{Bhagat_Class_2009}
+S.~Bhagat, G.~Cormode, B.~Krishnamurthy, and D.~Srivastava.
+\newblock Class-based graph anonymization for social network data.
+\newblock {\em Proc Vldb Endow}, 2009.
+
 \bibitem{Boldi_Injecting_2012}
 P.~Boldi, F.~Bonchi, A.~Gionis, and T.~Tassa.
 \newblock Injecting uncertainty in graphs for identity obfuscation.
 \newblock {\em SIGMOD}, 2012.
+
+\bibitem{Bollacker_Freebase_2008}
+K.~Bollacker, C.~Evans, P.~Paritosh, and T.~Sturge.
+\newblock Freebase: a collaboratively created graph database for structuring
+  human knowledge.
+\newblock {\em SIMMOD}, 2008.
 
 \bibitem{Bonchi_Identity_2014}
 F.~Bonchi, A.~Gionis, and T.~Tassa.
@@ -40,20 +74,82 @@ F.~Bonchi, A.~Gionis, and T.~Tassa.
   lens.
 \newblock {\em ICDE}, 2014.
 
+\bibitem{Buriol_Frahling_Leonardi_2006}
+L.~Buriol, G.~Frahling, and S.~Leonardi.
+\newblock Counting triangles in data streams.
+\newblock {\em PODS}, pages 253--262, 2006.
+
 \bibitem{casasprivacy}
 J.~Casas-Roma.
 \newblock Privacy-preserving on graphs using randomization and edge-relevance.
 \newblock {\em Modeling Decisions for Artificial Intelligence}, 2015.
+
+\bibitem{Chiba_Nishizeki_1985}
+N.~Chiba and T.~Nishizeki.
+\newblock Arboricity and subgraph listing algorithms.
+\newblock {\em SIAM Journal on Computing}, 1985.
 
 \bibitem{Colbourn_Colbourn_1987}
 Colbourn and Colbourn.
 \newblock The combinatorics of network reliability.
 \newblock 1987.
 
+\bibitem{Cormode_Anonymizing_2008}
+G.~Cormode, D.~Srivastava, T.~Yu, and Q.~Zhang.
+\newblock Anonymizing bipartite graph data using safe groupings.
+\newblock {\em VLDB}, 2008.
+
 \bibitem{MapReduceGoogle}
 J.~Dean and S.~Ghemawat.
 \newblock Mapreduce: Simplified data processing on large clusters.
 \newblock {\em Commun. ACM}, 2008.
+
+\bibitem{Eckmann_Moses_2002}
+J.~Eckmann and E.~Moses.
+\newblock Curvature of co-links uncovers hidden thematic layers in the world
+  wide web.
+\newblock {\em Academy of Sciences}, 2002.
+
+\bibitem{Gonzalez_Xin_Dave_Crankshaw_2014}
+J.~Gonzalez, R.~Xin, A.~Dave, and D.~Crankshaw.
+\newblock Graphx: Graph processing in a distributed dataflow framework.
+\newblock {\em GRADES,SIGMOD workshop}, pages 599--613, 2014.
+
+\bibitem{PowerGraph}
+J.~E. Gonzalez, Y.~Low, H.~Gu, D.~Bickson, and C.~Guestrin.
+\newblock Powergraph: Distributed graph-parallel computation on natural graphs.
+\newblock {\em OSDI}, pages 17--30, 2012.
+
+\bibitem{TurboGraph}
+W.-S. Han, S.~Lee, K.~Park, J.-H. Lee, M.-S. Kim, J.~Kim, and H.~Yu.
+\newblock Turbograph: a fast parallel graph engine handling billion-scale
+  graphs in a single pc.
+\newblock {\em KDD}, pages 77--85, 2013.
+
+\bibitem{Hartung_Theory_2015}
+S.~Hartung and N.~Talmon.
+\newblock The complexity of degree anonymization by graph contractions.
+\newblock {\em TAMC}, 2015.
+
+\bibitem{Hay_Anonymizing_2007}
+M.~Hay, G.~Miklau, D.~Jensen, P.~Weis, and S.~Srivastava.
+\newblock Anonymizing social networks.
+\newblock 2007.
+
+\bibitem{H14}
+X.~Hu, Y.~Tao, and C.-W. Chung.
+\newblock I/o-efficient algorithms on triangle listing and counting.
+\newblock {\em ACM Trans. Database Syst.}, 39(4), 2014.
+
+\bibitem{Itai_Rodeh_1978}
+A.~Itai and M.~Rodeh.
+\newblock Finding a minimum circuit in a graph.
+\newblock {\em SIAM}, 1978.
+
+\bibitem{Jorgensen2016}
+Z.~Jorgensen, T.~Yu, and G.~Cormode.
+\newblock Publishing attributed social graphs with formal privacy guarantees.
+\newblock pages 107--122, 2016.
 
 \bibitem{Kempe_Maximizing_2003}
 D.~Kempe, J.~Kleinberg, and {\'E}.~Tardos.
@@ -64,6 +160,70 @@ D.~Kempe, J.~Kleinberg, and {\'E}.~Tardos.
 G.~Keramidas and P.~Petoumenos.
 \newblock Cache replacement based on reuse-distance prediction.
 \newblock {\em ICCD}, 2007.
+
+\bibitem{Khuller_Saha_2009}
+S.~Khuller and B.~Saha.
+\newblock On finding dense subgraphs.
+\newblock {\em Automata}, 2009.
+
+\bibitem{Kim_Han_Lee_Park_Yu_2014}
+J.~Kim, W.~Han, S.~Lee, K.~Park, and H.~Yu.
+\newblock Opt: a new framework for overlapped and parallel triangulation in
+  large-scale graphs.
+\newblock {\em SIGMOD}, pages 637--648, 2014.
+
+\bibitem{Krogan_Global_2006}
+N.~Krogan, G.~Cagney, H.~Yu, G.~Zhong, and X.~Guo.
+\newblock Global landscape of protein complexes in the yeast saccharomyces
+  cerevisiae.
+\newblock {\em Nature}, 2006.
+
+\bibitem{GraphChi}
+A.~Kyrola, G.~Blelloch, and C.~Guestrin.
+\newblock Graphchi: Large-scale graph computation on just a pc.
+\newblock {\em OSDI}, pages 31--46, 2012.
+
+\bibitem{Liu_Towards_2008}
+K.~Liu and E.~Terzi.
+\newblock Towards identity anonymization on graphs.
+\newblock {\em SIGMOD}, 2008.
+
+\bibitem{Pregel}
+G.~Malewicz, M.~H. Austern, A.~J. Bik, J.~C. Dehnert, I.~Horn, N.~Leiser, and
+  G.~Czajkowski.
+\newblock Pregel: A system for large-scale graph processing.
+\newblock In {\em SIGMOD}, pages 135--146, 2010.
+
+\bibitem{Milo_Shen-Orr_Itzkovitz_Kashtan_Chklovskii_2002}
+R.~Milo, S.~Shen-Orr, S.~Itzkovitz, N.~Kashtan, and D.~Chklovskii.
+\newblock Network motifs: simple building blocks of complex networks.
+\newblock {\em Academy of Sciences}, 2002.
+
+\bibitem{Mittal_Preserving_2013}
+P.~Mittal, C.~Papamanthou, and D.~Song.
+\newblock Preserving link privacy in social network based systems.
+\newblock {\em NDSS}, 2013.
+
+\bibitem{Nagle_EWNI_2012}
+F.~Nagle, L.~Singh, and G.~Aris.
+\newblock {\em {EWNI:} Efficient Anonymization of Vulnerable Individuals in
+  Social Networks}.
+\newblock 2012.
+
+\bibitem{Narayanan2009}
+A.~Narayanan and V.~Shmatikov.
+\newblock De-anonymizing social networks.
+\newblock pages 173--187, 2009.
+
+\bibitem{Nguyen_Anonymizing_2015}
+H.~Nguyen, A.~Imine, and M.~Rusinowitch.
+\newblock Anonymizing social graphs via uncertainty semantics.
+\newblock {\em CCS}, 2015.
+
+\bibitem{Ninggal_Utility_2015}
+M.~Ninggal and J.~H. Abawajy.
+\newblock Utility-aware social network graph anonymization.
+\newblock {\em J Netw Comput Appl}, 2015.
 
 \bibitem{Parchas_Gullo_Papadias_Bonchi_2014}
 Parchas, Gullo, Papadias, and Bonchi.
@@ -92,15 +252,52 @@ T.~Schank.
 \newblock Algorithmic aspects of triangle-based network analysis.
 \newblock {\em Phd in computer science}, 2007.
 
+\bibitem{Shao_2014}
+Y.~Shao, B.~Cui, L.~Chen, L.~Ma, J.~Yao, and N.~Xu.
+\newblock Parallel subgraph listing in a large-scale graph.
+\newblock {\em SIGMOD}, pages 625--636, 2014.
+
 \bibitem{Suri_Vassilvitskii_2011}
 S.~Suri and S.~Vassilvitskii.
 \newblock Counting triangles and the curse of the last reducer.
 \newblock {\em KDD}, pages 607--614, 2011.
 
+\bibitem{Teixeira_2015}
+C.~H.~C. Teixeira, A.~J. Fonseca, M.~Serafini, G.~Siganos, M.~J. Zaki, and
+  A.~Aboulnaga.
+\newblock Arabesque: a system for distributed graph mining.
+\newblock {\em SOSP}, pages 425--440, 2015.
+
+\bibitem{Thompson_The_2009}
+B.~Thompson and D.~Yao.
+\newblock The union-split algorithm and cluster-based anonymization of social
+  networks.
+\newblock {\em ASIACCS}, 2009.
+
+\bibitem{Wang2011}
+Y.~Wang, L.~Xie, B.~Zheng, and K.~C.~K. Lee.
+\newblock Utility-oriented k-anonymization on social networks.
+\newblock {\em DASFAA}, 2011.
+
 \bibitem{whitehadoop_2010}
 T.~White.
 \newblock Hadoop: The definitive guide.
 \newblock 2010.
+
+\bibitem{Wu_k_2010}
+W.~Wu, Y.~Xiao, W.~Wang, Z.~He, and Z.~Wang.
+\newblock k-symmetry model for identity anonymization in social networks.
+\newblock {\em EDBT}, 2010.
+
+\bibitem{DegreeAUG}
+D.~Xiao, M.~Y. Eltabakh, and X.~Kong.
+\newblock Reliability-preserving anonymization on uncertain graphs.
+
+\bibitem{bermuda}
+D.~Xiao, M.~Y. Eltabakh, and X.~Kong.
+\newblock Bermuda: An efficient mapreduce triangle listing algorithm for
+  web-scale graphs.
+\newblock {\em SSDBM}, pages 10:1--10:12, 2016.
 
 \bibitem{Ying2009}
 X.~Ying, K.~Pan, X.~Wu, and L.~Guo.
@@ -112,5 +309,10 @@ X.~Ying, K.~Pan, X.~Wu, and L.~Guo.
 X.~Ying and X.~Wu.
 \newblock Randomizing social networks: a spectrum preserving approach.
 \newblock pages 739--750, 2008.
+
+\bibitem{Zhou_Preserving_2008}
+B.~Zhou and J.~Pei.
+\newblock Preserving privacy in social networks against neighborhood attacks.
+\newblock {\em ICDE}, 2008.
 
 \end{thebibliography}
