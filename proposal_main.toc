@@ -25,6 +25,7 @@
 \contentsline {section}{\numberline {3.3}Bermuda Vertex-Centric Node++}{27}
 \contentsline {subsection}{\numberline {3.3.1}Message Sharing Management}{30}
 \contentsline {subsection}{\numberline {3.3.2}Disscussion}{33}
+\contentsline {section}{\numberline {3.4}Contribution List}{34}
 \contentsline {chapter}{\numberline {4}Degree Anonymization over Uncertain Graphs}{35}
 \contentsline {section}{\numberline {4.1}Naive Approach: Anonymization via Representative Instance}{35}
 \contentsline {section}{\numberline {4.2}Reliability-Preserving anonymization on uncertain graphs}{37}

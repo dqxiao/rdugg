@@ -62,12 +62,6 @@ P.~Boldi, F.~Bonchi, A.~Gionis, and T.~Tassa.
 \newblock Injecting uncertainty in graphs for identity obfuscation.
 \newblock {\em SIGMOD}, 2012.
 
-\bibitem{Bollacker_Freebase_2008}
-K.~Bollacker, C.~Evans, P.~Paritosh, and T.~Sturge.
-\newblock Freebase: a collaboratively created graph database for structuring
-  human knowledge.
-\newblock {\em SIMMOD}, 2008.
-
 \bibitem{Bonchi_Identity_2014}
 F.~Bonchi, A.~Gionis, and T.~Tassa.
 \newblock Identity obfuscation in graphs through the information theoretic
@@ -314,5 +308,11 @@ X.~Ying and X.~Wu.
 B.~Zhou and J.~Pei.
 \newblock Preserving privacy in social networks against neighborhood attacks.
 \newblock {\em ICDE}, 2008.
+
+\bibitem{Zou_K_2009}
+L.~Zou, L.~Chen, and M.~{\"O}zsu.
+\newblock K-automorphism: A general framework for privacy preserving network
+  publication.
+\newblock {\em Proc. VLDB Endow.}, 2(1):946--957, 2009.
 
 \end{thebibliography}

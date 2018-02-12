@@ -1,0 +1,10 @@
+\section{Contribution List}
+Different from existing approaches, Bermuda effectively reduces the size of the intermediate data via redundancy elimination and sharing of messages whenever possible. Our constributions can be summarized as follows:
+\begin{itemize}
+\item {\em{\textbf{Independence of Graph Partitioning:}}}	Bermuda does not require any special partitioning of the graph, which suites current applications in which graph structures are very complex and dynamically changing.  
+\item {\em{\textbf{Awareness of Processing Order and Locality in the reduce phase:}}} Bermuda's efficiency and optimizations are driven by minimizing the communication overhead and the number of message passing over the network. Bermuda achieves these goals by dynamically keeping track of where and when vertices will be processed in the 
+reduce phase, and then maximizing the re-usability of information among the vertices that will be processed together. We propose  several reduce-side caching strategies for enabling such re-usability and sharing of information.
+\item {\em{\textbf{Scalability to Large Graphs even with Limited Compute Clusters:}}} 
+	As our experiments show, Bermuda's optimizations---especially the reduction in communication overheads---enable 
+	the scalability to very large graphs, while the state-of-art technique fail to finish the job given the same resources.
+\end{itemize}

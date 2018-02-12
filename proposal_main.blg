@@ -35,43 +35,43 @@ Warning--empty year in DegreeAUG
 Warning--empty journal in Ying_Randomizing_2008
 You've used 59 entries,
             2118 wiz_defined-function locations,
-            812 strings with 12768 characters,
-and the built_in function-call counts, 19921 in all, are:
-= -- 1933
-> -- 1113
+            813 strings with 12739 characters,
+and the built_in function-call counts, 19983 in all, are:
+= -- 1943
+> -- 1108
 < -- 19
-+ -- 440
-- -- 376
-* -- 1256
-:= -- 3380
++ -- 438
+- -- 374
+* -- 1266
+:= -- 3384
 add.period$ -- 176
 call.type$ -- 59
-change.case$ -- 364
+change.case$ -- 363
 chr.to.int$ -- 0
 cite$ -- 70
-duplicate$ -- 787
-empty$ -- 1329
-format.name$ -- 376
-if$ -- 4126
+duplicate$ -- 788
+empty$ -- 1339
+format.name$ -- 374
+if$ -- 4141
 int.to.chr$ -- 0
 int.to.str$ -- 59
 missing$ -- 60
 newline$ -- 297
 num.names$ -- 118
-pop$ -- 395
+pop$ -- 392
 preamble$ -- 1
-purify$ -- 306
+purify$ -- 305
 quote$ -- 0
 skip$ -- 650
 stack$ -- 0
-substring$ -- 908
+substring$ -- 933
 swap$ -- 220
 text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 234
 warning$ -- 11
-while$ -- 176
+while$ -- 178
 width$ -- 61
-write$ -- 602
+write$ -- 603
 (There were 3 error messages)
